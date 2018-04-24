@@ -1,222 +1,184 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "description": "This is an easy way to use EvalAPI with react.",
-    "version": "1.0.0",
-    "title": "EvalAPI",
-    "termsOfService": "http://motiveretail.com/terms/",
-    "contact": {
-      "email": "support@motiveretail.com"
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is an easy way to use EvalAPI with react.",
+    "version" : "0.1",
+    "title" : "EvalAPI",
+    "termsOfService" : "http://motiveretail.com/terms/",
+    "contact" : {
+      "email" : "support@motiveretail.com"
     }
   },
-  "host": "weathergator.com",
-  "basePath": "/evalapi-0.0.1-SNAPSHOT/api/eval/schema/",
-  "tags": [
-    {
-      "name": "Evaluator Configuration",
-      "description": "Every Evaluator's Schema Configuration",
-      "externalDocs": {
-        "description": "Find out more",
-        "url": "http://motiveretail.com"
-      }
-    },
-    {
-      "name": "fetch",
-      "description": "Retrieve Motive Integrator Evaluator Configurations"
-    },
-    {
-      "name": "eval",
-      "description": "Evaluate Message",
-      "externalDocs": {
-        "description": "Find out more about our company",
-        "url": "http://motiveretail.com"
-      }
+  "host" : "weathergator.com",
+  "basePath" : "/evalapi-0.0.1-SNAPSHOT/api/eval/schema/",
+  "tags" : [ {
+    "name" : "All Evaluator Configs",
+    "description" : "Every Evaluator's Schema Configuration",
+    "externalDocs" : {
+      "description" : "Find out more",
+      "url" : "http://motiveretail.com"
     }
-  ],
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "paths": {
-    "/xml": {
-      "get": {
-        "tags": [
-          "fetch"
-        ],
-        "summary": "Get all evaluator details",
-        "description": "",
-        "operationId": "getAllEvalDetails",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/AllResponse"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/xml/{msgtypeguid}": {
-      "get": {
-        "tags": [
-          "fetch"
-        ],
-        "summary": "Find evaluator details by ID",
-        "description": "Returns details of a single evaluator",
-        "operationId": "getEvalDetails",
-        "produces": [
-          "application/xml",
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "msgtypeguid",
-            "in": "path",
-            "description": "ID of evaluator",
-            "required": true,
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/OneResponse"
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
-      }
-    },
-    "/validate/xml": {
-      "post": {
-        "tags": [
-          "eval"
-        ],
-        "summary": "evaluates a message",
-        "description": "",
-        "operationId": "postEvalMessage",
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "produces": [
-          "application/json",
-          "multipart/form-data"
-        ],
-        "parameters": [
-          {
-            "name": "msgtypeguid",
-            "in": "formData",
-            "description": "ID of the evaluator to use",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "evalmsg",
-            "in": "formData",
-            "description": "Message for evaluation",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/EvalResponse"
+  }, {
+    "name" : "One Evaluator Config",
+    "description" : "Retrieve Motive Integrator Evaluator Configurations"
+  }, {
+    "name" : "Evaluate Message",
+    "description" : "Evaluate Message",
+    "externalDocs" : {
+      "description" : "Find out more about our company",
+      "url" : "http://motiveretail.com"
+    }
+  } ],
+  "paths" : {
+    "/validate/xml" : {
+      "post" : {
+        "tags" : [ "Evaluate Message" ],
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "msgtypeguid",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "73d4fd90-0f90-11e8-a322-00155d009947"
+        }, {
+          "name" : "evalmsg",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\"></soap:Envelope>"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/EvalResponse"
             }
           }
         },
-        "security": [
-          {
-            "basicAuth": []
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
+      }
+    },
+    "/xml" : {
+      "get" : {
+        "tags" : [ "All Evaluator Configs" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AllResponse"
+            }
+          },
+          "400" : {
+            "description" : "Bad Request"
           }
-        ]
-      }
-    }
-  },
-  "securityDefinitions": {
-    "basicAuth": {
-      "type": "basic"
-    }
-  },
-  "definitions": {
-    "OneResponse": {
-      "type": "object",
-      "properties": {
-        "msgtypeguid": {
-          "type": "integer",
-          "format": "guid"
         },
-        "schemalocation": {
-          "type": "string"
-        },
-        "sortorder": {
-          "type": "string"
-        },
-        "motivemessageid": {
-          "type": "string"
-        }
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
       }
     },
-    "AllResponse": {
-      "type": "object",
-      "properties": {
-        "msgtypeguid": {
-          "type": "integer",
-          "format": "guid"
+    "/xml/{msgtypeguid}" : {
+      "get" : {
+        "tags" : [ "One Evaluator Config" ],
+        "parameters" : [ {
+          "name" : "msgtypeguid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "x-example" : "73d4fd90-0f90-11e8-a322-00155d009947"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/OneResponse"
+            }
+          },
+          "400" : {
+            "description" : "Invalid ID supplied"
+          }
         },
-        "schemalocation": {
-          "type": "string"
-        },
-        "sortorder": {
-          "type": "string"
-        },
-        "motivemessageid": {
-          "type": "string"
-        }
-      }
-    },
-    "EvalResponse": {
-      "type": "object",
-      "properties": {
-        "msgtypeguid": {
-          "type": "integer",
-          "format": "guid"
-        },
-        "transactguid": {
-          "type": "string"
-        },
-        "evalerrlist": {
-          "type": "string"
-        }
+        "security" : [ {
+          "basicAuth" : [ ]
+        } ]
       }
     }
   },
-  "externalDocs": {
-    "description": "Find out more about EvalAPI",
-    "url": "http://motiveretail.com"
+  "securityDefinitions" : {
+    "basicAuth" : {
+      "type" : "basic"
+    }
+  },
+  "definitions" : {
+    "OneResponse" : {
+      "type" : "object",
+      "properties" : {
+        "msgtypeguid" : {
+          "type" : "string"
+        },
+        "schemalocation" : {
+          "type" : "string"
+        },
+        "sortorder" : {
+          "type" : "string"
+        },
+        "motivemessageid" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "schemalocation" : "schemalocation",
+        "sortorder" : "sortorder",
+        "msgtypeguid" : "msgtypeguid",
+        "motivemessageid" : "motivemessageid"
+      }
+    },
+    "AllResponse" : {
+      "type" : "object",
+      "properties" : {
+        "msgtypeguid" : {
+          "type" : "integer",
+          "format" : "guid"
+        },
+        "schemalocation" : {
+          "type" : "string"
+        },
+        "sortorder" : {
+          "type" : "string"
+        },
+        "motivemessageid" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "schemalocation" : "schemalocation",
+        "sortorder" : "sortorder",
+        "msgtypeguid" : 0,
+        "motivemessageid" : "motivemessageid"
+      }
+    },
+    "EvalResponse" : {
+      "type" : "object",
+      "properties" : {
+        "msgtypeguid" : {
+          "type" : "integer",
+          "format" : "guid"
+        },
+        "transactguid" : {
+          "type" : "string"
+        },
+        "evalerrlist" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "msgtypeguid" : 0,
+        "transactguid" : "transactguid",
+        "evalerrlist" : "evalerrlist"
+      }
+    }
   }
 }
