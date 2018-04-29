@@ -9,8 +9,8 @@
       "email" : "support@motiveretail.com"
     }
   },
-  "host" : "weathergator.com",
-  "basePath" : "/evalapi-0.0.1-SNAPSHOT/api/eval/schema/",
+  "host" : "localhost:8080",
+  "basePath" : "/api/eval/schema/",
   "tags" : [ {
     "name" : "All Evaluator Configs",
     "description" : "Every Evaluator's Schema Configuration",
@@ -60,7 +60,7 @@
         } ]
       }
     },
-    "/xml" : {
+    "/xml/" : {
       "get" : {
         "tags" : [ "All Evaluator Configs" ],
         "parameters" : [ ],

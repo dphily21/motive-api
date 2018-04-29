@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
 import './App.css';
-import {SwaggerTest} from "../SwaggerUI/SwaggerUI";
+import SidebarExample from '../Sidebar/Sidebar';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <SwaggerTest/>
+          <h1>Motive API</h1>
+          <SidebarExample/>
       </div>
     );
   }
