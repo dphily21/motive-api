@@ -26,7 +26,7 @@ class RuleBuilder extends Component{
                         { value: 'two', label: 'Two' },
                     ]}
                 />
-                <RuleList/>
+                <RuleList rules={this.props.rules}/>
             </div>
         )
     }

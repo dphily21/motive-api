@@ -9,40 +9,48 @@ import Home from "../Home/Home";
 // the sidebar and one for the main area. We want to
 // render both of them in different places when the
 // path matches the current URL.
-const routes = [
-    {
-        path: "/",
-        exact: true,
-        sidebar: () => <div>Welcome Home!</div>,
-        main: () => <Home/>
-    },
-    {
-        path: "/EvalApiSpec",
-        sidebar: () => <div>Eval API Spec!</div>,
-        main: () => <SwaggerTest/>
-    },
-    {
-        path: "/Redoc",
-        sidebar: () => <div>Redoc Eval API Spec!</div>,
-        main: () => <RedocStandalone specUrl= 'http://localhost:8080/src/Utils/evalApiSpec.json'/>
-    },
-    {
-        path: "/RuleBuilder",
-        sidebar: () => <div>Build Rules!</div>,
-        main: () => <RuleBuilder/>
-    }
-];
 
 class Sidebar extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state ={
+        this.state = {
             rules: [
-                {xpath: 'RepairOrder/Job',
-                 operator: '=',
-                 error: 'The Job component is required'
-                }]
-        }
+                {
+                    ruleId: 1,
+                    xpath: 'RepairOrder/Job',
+                    operator: 'required',
+                    error: 'The Job component is required'
+                },
+                {
+                    ruleId: 2,
+                    xpath: 'RepairOrder/Job/ServiceLabor/OperationID',
+                    operator: 'equals',
+                    error: 'The OperationID component must equal: 1234'
+                }],
+            routes: [
+                {
+                    path: "/",
+                    exact: true,
+                    sidebar: () => <div>Welcome Home!</div>,
+                    main: () => <Home/>
+                },
+                {
+                    path: "/EvalApiSpec",
+                    sidebar: () => <div>Eval API Spec!</div>,
+                    main: () => <SwaggerTest/>
+                },
+                {
+                    path: "/Redoc",
+                    sidebar: () => <div>Redoc Eval API Spec!</div>,
+                    main: () => <RedocStandalone specUrl='http://localhost:8080/src/Utils/evalApiSpec.json'/>
+                },
+                {
+                    path: "/RuleBuilder",
+                    sidebar: () => <div>Build Rules!</div>,
+                    main: () => <RuleBuilder rules={this.state.rules}/>
+                }
+            ]
+    };
     }
     render() {
         return (
@@ -70,7 +78,7 @@ class Sidebar extends Component {
                             </li>
                         </ul>
 
-                        {routes.map((route, index) => (
+                        {this.state.routes.map((route, index) => (
                             // You can render a <Route> in as many places
                             // as you want in your app. It will render along
                             // with any other <Route>s that also match the URL.
@@ -88,7 +96,7 @@ class Sidebar extends Component {
                     </div>
 
                     <div style={{flex: 1, padding: "10px"}}>
-                        {routes.map((route, index) => (
+                        {this.state.routes.map((route, index) => (
                             // Render more <Route>s with the same paths as
                             // above, but different components this time.
                             <Route

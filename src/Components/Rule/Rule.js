@@ -5,7 +5,10 @@ export class Rule extends Component{
         return (
             <div>
                 <div>
-                    <h3>This is a rule</h3>
+                    <h3>This is rule {this.props.rule.ruleId}</h3>
+                    <p>X-Path: {this.props.rule.xpath} </p>
+                    <p>Operator: {this.props.rule.operator} </p>
+                    <p>Error: {this.props.rule.error} </p>
                 </div>
             </div>
         )

@@ -7,7 +7,7 @@ class RuleList extends Component{
             <div>
                 {
                     this.props.rules.map(rule => {
-                        return <Rule/>
+                        return <Rule rule={rule}/>
                     })
                 }
             </div>
