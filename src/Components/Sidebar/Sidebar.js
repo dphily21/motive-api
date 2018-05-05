@@ -4,6 +4,7 @@ import {SwaggerTest} from "../SwaggerUI/SwaggerUI";
 import { RedocStandalone } from 'redoc';
 import RuleBuilder from "../RuleBuilder/RuleBuilder";
 import Home from "../Home/Home";
+import Board from "../Chess/Board";
 
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
@@ -48,6 +49,11 @@ class Sidebar extends Component {
                     path: "/RuleBuilder",
                     sidebar: () => <div>Build Rules!</div>,
                     main: () => <RuleBuilder rules={this.state.rules}/>
+                },
+                {
+                    path: "/Chess",
+                    sidebar: () => <div>Drag and Drop</div>,
+                    main: () => <Board knightPosition={[4, 7]}/>
                 }
             ]
     };
@@ -75,6 +81,9 @@ class Sidebar extends Component {
                             </li>
                             <li>
                                 <Link to="/RuleBuilder">RuleBuilder</Link>
+                            </li>
+                            <li>
+                                <Link to="/Chess">Chess</Link>
                             </li>
                         </ul>
 
