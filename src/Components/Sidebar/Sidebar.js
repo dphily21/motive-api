@@ -5,7 +5,7 @@ import { RedocStandalone } from 'redoc';
 import RuleBuilder from "../RuleBuilder/RuleBuilder";
 import Home from "../Home/Home";
 import Board from "../Chess/Board";
-import D3 from "../D3/D3";
+import Partition from "../D3/Partition";
 
 // Each logical "route" has two components, one for
 // the sidebar and one for the main area. We want to
@@ -59,7 +59,7 @@ class Sidebar extends Component {
                 {
                     path: "/D3",
                     sidebar: () => <div>Data Visualization Example</div>,
-                    main: () => <D3/>
+                    main: () => <Partition/>
                 }
             ]
     };
@@ -92,7 +92,7 @@ class Sidebar extends Component {
                                 <Link to="/Chess">Chess</Link>
                             </li>
                             <li>
-                                <Link to="/D3">D3</Link>
+                                <Link to="/D3">Specs</Link>
                             </li>
                         </ul>
 
