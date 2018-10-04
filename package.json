@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "d3": "^5.7.0",
+    "d3-collection": "^1.0.7",
     "npm": "^6.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -14,7 +15,9 @@
     "react-select": "^1.2.1",
     "react-table": "^6.8.2",
     "redoc": "^2.0.0-alpha.17",
-    "swagger-ui": "^3.13.4"
+    "swagger-ui": "^3.13.4",
+    "underscore": "^1.9.1",
+    "underscore.nest": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
