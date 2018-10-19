@@ -5,6 +5,7 @@
   "dependencies": {
     "d3": "^5.7.0",
     "d3-collection": "^1.0.7",
+    "flatted": "^1.0.2",
     "npm": "^6.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",

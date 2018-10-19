@@ -55,12 +55,12 @@ class Sidebar extends Component {
                     path: "/Chess",
                     sidebar: () => <div>Drag and Drop</div>,
                     main: () => <Board knightPosition={[4, 7]}/>
-                },
-                {
-                    path: "/D3",
-                    sidebar: () => <div>Data Visualization Example</div>,
-                    main: () => <Partition/>
-                }
+                 }//,
+                // {
+                //     path: "/D3",
+                //     sidebar: () => <div>Data Visualization Example</div>,
+                //     main: () => <Partition/>
+                // }
             ]
     };
     }
